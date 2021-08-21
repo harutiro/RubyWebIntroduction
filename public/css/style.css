@@ -139,7 +139,7 @@ nav a:hover {
     margin-top: var(--yohaku);
     padding: 0px;
     background-color: #FEFEFE;
-    height: 570px;
+    height: 600px;
     width: 400px;
     margin-left: var(--yohaku);
     box-shadow: 5px 5px 20px #999999;
@@ -309,3 +309,4 @@ footer {
     height: 50px;
 
 }
+

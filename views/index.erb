@@ -6,7 +6,8 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" type='text/css' href="./public/css/style.css">-->
+    <link href="/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Satisfy|Stoke|Yellowtail|Geo|Oswald|Lobster" rel='stylesheet' type='text/css'>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kosugi&family=Noto+Serif+JP&display=swap" rel="stylesheet">
@@ -69,19 +70,20 @@
         
         <div class="container my-3">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="windows" value="Windows">
+                <input class="form-check-input" name="windows" type="checkbox" id="windows" value=ture>
                 <label class="form-check-label" for="inlineCheckbox1">Windows</label>
             </div>
             <div class="form-check form-check-inline">
-              　<input class="form-check-input" type="checkbox" id="mac" value="Mac">
+              　<input class="form-check-input" name="mac" type="checkbox" id="mac" value=true>
                 <label class="form-check-label" for="inlineCheckbox2">Mac</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="linux" value="Linux">
+                <input class="form-check-input" name="linux" type="checkbox" id="linux" value=true>
             　  <label class="form-check-label" for="inlineCheckbox3">Linux</label>
             </div>
         </div>
           
+        <div class="like">  
         <div class="form-group">
             <label for="category">カテゴリー</label>
             <select name="category" class="form-control">
@@ -89,7 +91,8 @@
                 <option value="<%= category.id %>"> <%= category.name %> </option>
               <% end %>
             </select>
-        </div>  
+        </div>
+        </div>
       
         <input type="submit" value="追加" class="btn btn-dark float-right mt-2">
     </form>
@@ -109,46 +112,56 @@
         <h2 class="title">無料ソフト</h2>
         
         <div class="boxes">
-            <% @contributions.each do category %>
+            <% @contributions.each do |item| %>
             
                 <div class="box">
                     <div class="box-first">
-                        <img src="img/7zip/icon.png">
+                        <img src="/img/7zip/icon.png">
                         <div>
-                            <h3>7-zip</h3>
-                            <p>圧縮解凍ソフト</p>
+                            <h3><%= item.main_title%></h3>
+                            <p><%= item.sub_title%></p>
                         </div>
                     </div>
-                    <img src="img/7zip/intr.PNG" class="box-second">
+                    <img src="/img/7zip/intr.PNG" class="box-second">
                     <div class="box-center">
-                        <img src="img/user/harutiro-icon.jpg">
+                        <img src="/img/user/harutiro-icon.jpg">
                         <div class="box-center-name">
                             <p>紹介者</p>
-                            <h3>harutiro</h3>
+                            <h3><%= item.user_name %></h3>
                         </div>
                         <div class="box-center-icon">
                             <p>対応OS</p>
-                            <img src="img/os/win.png">
-                            <img src="img/os/apple.png" style="visibility:hidden">
-                            <img src="img/os/linux.png" style="visibility:hidden">
+                            <% if item.winos %>
+                                <img src="/img/os/win.png">
+                            <% end %>
+                            <% if item.macos%>
+                                <img src="/img/os/apple.png">
+                            <% end %>
+                            <% if item.linuxos %>
+                                <img src="/img/os/linux.png">
+                            <% end %>
                         </div>
                     </div>
                     <div class="box-third">
-                        <p>
-                            このソフトは、とにかく簡単に、そして様々な形式の圧縮ファイルに対応していることが
-                            いいところだと思います！！<br>  
-    
-                            操作に関しては右クリックをして７ZIPを押して、解凍と押すだけで簡単に解凍可能！！
-    
-                            対応ファイルは7z、ZIP、RAR、LZH、ISO、TAR、DMG、MSIなど、さまざま対応しております！！
-                        </p>
-                        <a class="box-button" href="https://sevenzip.osdn.jp/" target="_blank">公式ウェブ＋ダウンロードサイト</a>
+                        <p><%= item.message %></p>
                     </div>
+                    
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="container pull-left m-0">
+                            <a class="box-button" href="<%= item.url%>" target="_blank">公式ウェブ＋ダウンロードサイト</a>
+                        </div>
+                        <span class="card-dooter-text"><%= item.like %></span>
+                        <form action="/good/<%= item.id %>" method="post">
+                            <input type="submit" value="LIKE" class="btn card-fotter-text">
+                        </form>
+                    </div>    
                 </div>
             
             <% end %>
         </div>
     </section>
+    
+    
     
     <footer>&copy; 2021 Harutiro</footer>
 

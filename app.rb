@@ -29,7 +29,7 @@ post '/create' do
         sub_title: params[:sub_title],
         user_name: params[:user_name],
         winos: params[:windows],
-        macos: params[:macos],
+        macos: params[:mac],
         linuxos: params[:linux],
         message: params[:message],
         url: params[:url],
@@ -40,4 +40,23 @@ post '/create' do
     redirect '/'
 end
 
+get '/category/:id' do
+   @categories = Category.all
+   @category = Category.find(params[:id])
+   @category_name = @category.name
+   @contributions = @category.contributions
+   
+   erb :index
+end
+
+post '/good/:id' do
+    content = Contribution.find(params[:id])
+    like = content.like
+    content.update({
+        like: like + 1
+    })
+    
+    redirect '/'
+
+end
 
