@@ -4,5 +4,5 @@ class Contribution < ActiveRecord::Base
 end
 
 class Category < ActiveRecord::Base
-    has_many
+    has_many :contributions
 end

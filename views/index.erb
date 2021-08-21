@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Satisfy|Stoke|Yellowtail|Geo|Oswald|Lobster" rel='stylesheet' type='text/css'>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kosugi&family=Noto+Serif+JP&display=swap" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 
 <body>
@@ -26,707 +26,130 @@
         &ensp;&ensp;Web<br>
         </p>
 
-        <ul>
-            <li><a href="soft-index.html">soft</a></li>
-            <li><a href="web-index.html">web</a></li>
-            <li><a href="#price">app</a></li>
-            <li><a href="#access">game</a></li>
-        </ul>
+        <!--<ul>-->
+        <!--    <li><a href="soft-index.html">soft</a></li>-->
+        <!--    <li><a href="web-index.html">web</a></li>-->
+        <!--    <li><a href="#price">app</a></li>-->
+        <!--    <li><a href="#access">game</a></li>-->
+        <!--</ul>-->
     </nav>
 
 
-    <header>
-        <h1>SIW</h1>
-    </header>
+    <!--<header>-->
+    <!--    <h1>SIW</h1>-->
+    <!--</header>-->
+    <div class="container-fluid p-2 d-flex justify-content-center">
+    <div class="card col-lg-6 p-5 border-3">
+    <form action="/create" method="post">
+      
+        <div class="form-group">
+            <label for="title">アプリ名</label>
+            <input type="text" name="title" id="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="price">サブタイトル</label>
+            <input type="text" name="price" id="price" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="price">メッセージ</label>
+            <input type="text" name="price" id="price" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="price">公式ページURL</label>
+            <input type="text" name="price" id="price" class="form-control">
+        </div>    
+        <div class="form-group">
+            <label for="price">ユーザー名</label>
+            <input type="text" name="price" id="price" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="price">パスワード</label>
+            <input type="text" name="price" id="price" class="form-control">
+        </div>
+        
+        <div class="container my-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Windows">
+                <label class="form-check-label" for="inlineCheckbox1">Windows</label>
+            </div>
+            <div class="form-check form-check-inline">
+              　<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Mac">
+                <label class="form-check-label" for="inlineCheckbox2">Mac</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Linux">
+            　  <label class="form-check-label" for="inlineCheckbox3">Linux</label>
+            </div>
+        </div>
+          
+        <div class="form-group">
+            <label for="category">カテゴリー</label>
+            <select name="category" class="form-control">
+              <% @categories.each do |category|%>
+                <option value="<%= category.id %>"> <%= category.name %> </option>
+              <% end %>
+            </select>
+        </div>  
+      
+        <input type="submit" value="追加" class="btn btn-dark float-right mt-2">
+    </form>
+    </div>
+    </div>
+    
+    <div class="btn-group col-lg-12">
+        <%  @categories.each do |category| %> 
+           <a href="/category/<%= category.id %>" class="btn btn-secondary"><%= category.name %></a>
+        <% end %>
+    </div>
 
 
     <!--    =================================無料==========================================  -->
-
+    
     <section class="free" id="free">
         <h2 class="title">無料ソフト</h2>
+        
         <div class="boxes">
-
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/7zip/icon.png">
-                    <div>
-                        <h3>7-zip</h3>
-                        <p>圧縮解凍ソフト</p>
-                    </div>
-                </div>
-                <img src="img/7zip/intr.PNG" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、とにかく簡単に、そして様々な形式の圧縮ファイルに対応していることが
-                        いいところだと思います！！<br>
-
-                        操作に関しては右クリックをして７ZIPを押して、解凍と押すだけで簡単に解凍可能！！
-
-                        対応ファイルは7z、ZIP、RAR、LZH、ISO、TAR、DMG、MSIなど、さまざま対応しております！！
-                    </p>
-                    <a class="box-button" href="https://sevenzip.osdn.jp/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/chrome/icon.jpg">
-                    <div>
-                        <h3>chrome</h3>
-                        <p>多機能なブラウザ</p>
-                    </div>
-                </div>
-                <img src="img/chrome/intr.PNG" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトはとにかくブラウザなのに、様々な拡張機能が入って自分好みにカスタマイズができるところがいいところです！<br>
-                        広告をブロックしたり、見た目を自分好みに変換したり、とても便利です！！<br>
-                        最近のブラウザのシェア率で1位になっていますが、改めて紹介したいなと思いました。<br>
-                        また別の機会で拡張機能の紹介でもしたいですね。
-                    </p>
-                    <a class="box-button" href="https://www.google.co.jp/chrome/?brand=FDKM&gclid=EAIaIQobChMIn6eogbPR7wIVVaaWCh2s1wUeEAAYASAAEgJ_YvD_BwE&gclsrc=aw.ds" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/remote/icon.jpg">
-                    <div>
-                        <h3>Chromeリモートデスクトップ</h3>
-                        <p>簡単なリモートツール</p>
-                    </div>
-                </div>
-                <img src="img/remote/intr.PNG" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトはリモートでデスクトップを簡単につなげることが出来ます！<br>
-                        外から自分のメイン機を操作してデータファイルを回収したり、ＰＣの操作に困っている友達を遠くから支援することもできます。<br>
-                        このソフトをインストール知ってある設定しておくと、電源を入れるだけの状態でロックが掛かっていても自分のメイン機にアクセスしてユーザーロックをかいｚｙユーザーロックを解除することもできます。<br>
-                        もしよかったらインストールしてみてください。
-                    </p>
-                    <a class="box-button" href="https://remotedesktop.google.com/?hl=ja" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/syukusyou/icon.png">
-                    <div>
-                        <h3>縮小革命</h3>
-                        <p>写真形式、サイズ変換ツール</p>
-                    </div>
-                </div>
-                <img src="img/syukusyou/intr.PNG" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、有名な吉田製作所さんが作成されたアプリです。<br>
-                        画面に出ている7個の設定を済ませるだけで、簡単に画像ファイルを変換縮小、画像の比率等を変えてくれます。<br>
-                        ほかにもWebの画像のコピー防止の透かしを簡単に掛けることが出来ます。<br>
-                        便利ですのでぜひ使ってみてください。
-                    </p>
-                    <a class="box-button" href="https://netank.net/down" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/craving/icon.PNG">
-                    <div>
-                        <h3>craving exproler 2</h3>
-                        <p>動画ダウンロードツール</p>
-                    </div>
-                </div>
-                <img src="img/craving/intr.jpg" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、動画サイトの動画を実際のサイトのページからボタン一つで簡単に落とせるやつです。<br>
-                        実際に動画をみて確認しながらダウンロードをするときは便利です。<br>
-                        ですが、このソフトは「２」とついていますので前作の後継ソフトとなります<br>
-                        前作に合った動画の拡張子の変換やフル画質での動画ファイルのダウンロードはまだ対応していません。<br>
-                        そこは今後のアップデートに期待です。
-                    </p>
-                    <a class="box-button" href="https://www.crav-ing.com/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/iobit/icon.png">
-                    <div>
-                        <h3>IObit Uninstaller</h3>
-                        <p>強力アンインストーラー</p>
-                    </div>
-                </div>
-                <img src="img/iobit/intr.png" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、アンインストールする時に出てくる残留ファイルを全部消してくれるやつです。<br>
-                        今まで、アンインストールをするときに、失敗して、変に残ってしまうということが多々ありました。<br>
-                        ですが、このソフトを使えばきれいさっぱり自動で消してくれます。<br>
-                        もしよければ使ってみてください。
-                    </p>
-                    <a class="box-button" href="https://jp.iobit.com/pc-optimization-software/iobit-uninstaller-free.html" target="_blank">
-
-                        公式ウェブ＋ダウロードサイト
-
-                    </a>
-                </div>
-            </div>
+            <% @contributions.each do category %>
             
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/audacity/icon.jpg">
-                    <div>
-                        <h3>Audacity</h3>
-                        <p>音楽ファイルエディタ</p>
+                <div class="box">
+                    <div class="box-first">
+                        <img src="img/7zip/icon.png">
+                        <div>
+                            <h3>7-zip</h3>
+                            <p>圧縮解凍ソフト</p>
+                        </div>
+                    </div>
+                    <img src="img/7zip/intr.PNG" class="box-second">
+                    <div class="box-center">
+                        <img src="img/user/harutiro-icon.jpg">
+                        <div class="box-center-name">
+                            <p>紹介者</p>
+                            <h3>harutiro</h3>
+                        </div>
+                        <div class="box-center-icon">
+                            <p>対応OS</p>
+                            <img src="img/os/win.png">
+                            <img src="img/os/apple.png" style="visibility:hidden">
+                            <img src="img/os/linux.png" style="visibility:hidden">
+                        </div>
+                    </div>
+                    <div class="box-third">
+                        <p>
+                            このソフトは、とにかく簡単に、そして様々な形式の圧縮ファイルに対応していることが
+                            いいところだと思います！！<br>  
+    
+                            操作に関しては右クリックをして７ZIPを押して、解凍と押すだけで簡単に解凍可能！！
+    
+                            対応ファイルは7z、ZIP、RAR、LZH、ISO、TAR、DMG、MSIなど、さまざま対応しております！！
+                        </p>
+                        <a class="box-button" href="https://sevenzip.osdn.jp/" target="_blank">公式ウェブ＋ダウンロードサイト</a>
                     </div>
                 </div>
-                <img src="img/audacity/intr.png" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/ryou.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>りょうさん</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、音楽ファイルを編集して、エフェクトやノイズを除去したり、様々なことが出来るソフトです。<br>
-                        録音をしたりして、ノイズがのっかってしまったとき、ノイズ除去を押して様々な設定をチョットするだけで簡単に除去ができます。<br>
-                        あとVtuverの湊あくあさんはおかゆの声に対して自分の都合がいい言葉をしゃべらせるため、音声ファイルの編集を行っていたりしていました。<br>
-                    </p>
-                    <a class="box-button" href="https://ja.osdn.net/projects/audacity/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
             
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/filezilla/icon.jpg">
-                    <div>
-                        <h3>FileZilla</h3>
-                        <p>ファイル編集ソフト</p>
-                    </div>
-                </div>
-                <img src="img/filezilla/intr.jpg" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、サーバーと自分のローカルのデータを取引するときに便利なソフトです。<br>
-                        サーバーでデータをやり取りする時CLI（コンソール）で操作するのはとてもめんどくさいですし、わかりにくいです。<br>
-                        ですのでGUI（インターフェース）のついているこのソフトを使うと、とっても快適に操作ができます。<br>
-                        サーバーを管理をしているそこのあなた！！ぜひ入れてみるといいでしょう。<br>
-                    </p>
-                    <a class="box-button" href="https://ja.osdn.net/projects/filezilla/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/kite/icon.PNG">
-                    <div>
-                        <h3>Kite</h3>
-                        <p>プログラミング補助ツール</p>
-                    </div>
-                </div>
-                <img src="img/kite/intr.png" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトはプログラミングをするときに自動でよくうつ内容を予測変換を出してくれるソフトです。<br>
-                        kotlinやpythonなど様々なプログラミング言語に対応しています！！<br>
-                        一回使うともう手放せなくなります、ぜひ使ってみてください<br>
-                    </p>
-                    <a class="box-button" href="https://www.kite.com/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/runcat/icon.png">
-                    <div>
-                        <h3>RunCat</h3>
-                        <p>システム状態確認ソフト</p>
-                    </div>
-                </div>
-                <img src="img/runcat/intr.gif" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/japao.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>じゃぱおさん</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" >
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        システムの状態を確認することができます。<br>
-                        CPU使用率,メモリ性能,バッテリー状態,ディスク容量,ネットワーク接続状況<br>
-                        とにかくかわいいです。デスクトップの隅で走っているにゃんこを眺めてリフレッシュされてみてはいかがでしょうか？
-                    </p>
-                    <a class="box-button" href="https://kyome.io/runcat/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/musescore/icon.jpg">
-                    <div>
-                        <h3>MuseScore</h3>
-                        <p>楽譜作成ソフト</p>
-                    </div>
-                </div>
-                <img src="img/musescore/intr.png" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、実際の楽譜を描く感覚で楽譜を作成できるソフトです。<br>
-                        一つスコアを作れば簡単にパート譜を作ることができ、とても便利です。<br>
-                        少し音源はしょぼいですが、実際に再生したりすることもできますのでぜひ使ってみてください。<br>
-                    </p>
-                    <a class="box-button" href="https://musescore.org/ja" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/VLC/icon.jpg">
-                    <div>
-                        <h3>VLC media player</h3>
-                        <p>マルチメディアプレイヤー</p>
-                    </div>
-                </div>
-                <img src="img/VLC/intr.jpg" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、様々な動画、音声、写真ファイルを再生できます。<br>
-                        windowsの通常入ってるソフトで読み込めないものでもほぼほぼ読み込むことができます。<br>
-                        CDやDVD、Blu-rayも基本大体再生できますので使ってみてください。
-                    </p>
-                    <a class="box-button" href="https://www.videolan.org/vlc/index.ja.html" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/spacedesk/icon.jpg">
-                    <div>
-                        <h3>SpaceDesk</h3>
-                        <p>スクリーンミラーリング</p>
-                    </div>
-                </div>
-                <img src="img/spacedesk/intr.png" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、とにかく外出先でもデュアルディスプレイを使いたい方にお勧めです。<br>
-                        無料であなたのiPhone、スマホ、タブレットなどを外部ディスプレイに変更できます。<br>
-                        少し接続の速度が遅く、ラグいのが難点ですがとてもいいソフトです。
-                    </p>
-                    <a class="box-button" href="https://spacedesk.net/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/vysor/icon.png">
-                    <div>
-                        <h3>Vysor</h3>
-                        <p>Androidのスクリーンミラーリング</p>
-                    </div>
-                </div>
-                <img src="img/vysor/intr.jpg" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/amida-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>あみださん</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、AndroidとPCをUSBでつなげるだけでAndroidの画面をPCをにかんたんに映し出せるソフトです<br>
-                        PC側から画面の操作をすることもできますので、画面が割れて、しかも液晶漏れとかしてしまっても復旧がしやすくなっちゃう便利なソフトです！！<br>
-                        ほかにも、開発するときのエミュレーター代わりにも使ったり、画面をキャプチャして、生放送でもやってみてはいかがでしょうか？
-                    </p>
-                    <a class="box-button" href="https://www.vysor.io/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/JoyToKey/icon.jpg">
-                    <div>
-                        <h3>JoyToKey</h3>
-                        <p>コントローラーをキーボードに変えちゃうソフト</p>
-                    </div>
-                </div>
-                <img src="img/JoyToKey/intr.jpg" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、コントローラーをUSBで刺しただけでは対応していないソフトにコントローラーを対応させれる便利なソフトです。<br>
-                        一つ一つボタンを選択して、キーボードの文字と紐ずけるだけで簡単にコントローラー化！<br>
-                        これを使えば、Adobeのフォトショップとかで左手デバイスを探していた方、家に転がっているコントローラーで安く作ることができちゃいます。<br>
-                    </p>
-                    <a class="box-button" href="https://joytokey.net/ja/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/coretemp/icon.jfif">
-                    <div>
-                        <h3>Core Temp</h3>
-                        <p>CPU温度表示ソフト</p>
-                    </div>
-                </div>
-                <img src="img/coretemp/intr.jpg" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/ryou.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>りょうさん</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png" style="visibility:hidden">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、CPUの温度を確認できるソフトです。<br>
-                        ゲームをしているときや、ベンチマークをしているときのCPUの温度をみてどれぐらいの負荷がかかるのか簡単に見ることができます。
-                    </p>
-                    <a class="box-button" href="https://ja.osdn.net/projects/audacity/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            
-            
-            
-            
+            <% end %>
         </div>
-
     </section>
-
-    <!--    =================================有料===============================================  -->
-
-    <section class="todo" id="todo">
-        <h2 class="title">有料ソフト</h2>
-
-        <div class="boxes">
-
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/ofice/icon.jpg">
-                    <div>
-                        <h3>microsoft ofice</h3>
-                        <p>office系</p>
-                    </div>
-                </div>
-                <img src="img/ofice/intr.png" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/syunya.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>しゅんやさん</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        言わずもがな、とりあえず全員かっとけというソフトですね。<br>
-                        やはり純正ですので、グラフの作成などは便利ですね。<br>
-                        googleのスプレっとシートとかありますが、こちらはたくさんの機能があるのがいいですよ！！
-                    </p>
-                    <a class="box-button" href="https://www.microsoft.com/ja-jp/download/office.aspx" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            <div class="box">
-                <div class="box-first">
-                    <img src="img/norton/icon.png">
-                    <div>
-                        <h3>Norton</h3>
-                        <p>セキュリティ系</p>
-                    </div>
-                </div>
-                <img src="img/norton/intr.png" class="box-second">
-                <div class="box-center">
-                    <img src="img/user/harutiro-icon.jpg">
-                    <div class="box-center-name">
-                        <p>紹介者</p>
-                        <h3>harutiro</h3>
-                    </div>
-                    <div class="box-center-icon">
-                        <p>対応OS</p>
-                        <img src="img/os/win.png">
-                        <img src="img/os/apple.png">
-                        <img src="img/os/linux.png" style="visibility:hidden">
-                    </div>
-                </div>
-                <div class="box-third">
-                    <p>
-                        このソフトは、セキュリティーソフトとしてはもちろんのこと、ほかにもTempファイルの消去やHDDの断片化の改良など、たくさんの機能が付いていてとても便利です。<br>
-                        ほかにも、やばいサイトにアクセスしたときに自動的に遮断してくれる機能などもあります！！<br>
-                    </p>
-                    <a class="box-button" href="https://jp.norton.com/" target="_blank">
-
-                        公式ウェブ＋ダウンロードサイト
-
-                    </a>
-                </div>
-            </div>
-            
-            
-            
-            
-        </div>
-
-    </section>
-
-
-
+    
     <footer>&copy; 2021 Harutiro</footer>
 
 </body></html>
