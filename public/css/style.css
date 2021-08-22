@@ -16,6 +16,10 @@ body {
 
 /*==================================ヘッター======================================*/
 
+.backImage {
+    background-image: url("/img/formImage.jpg");
+}
+
 h1 {
     color: #000044;
     font-size: 90px;
@@ -140,7 +144,7 @@ nav a:hover {
     padding: 0px;
     background-color: #FEFEFE;
     height: 600px;
-    width: 400px;
+    width: 450px;
     margin-left: var(--yohaku);
     box-shadow: 5px 5px 20px #999999;
     border-radius: 20px;
@@ -182,7 +186,7 @@ nav a:hover {
 
 .box-second {
     margin-top: var(--yohaku);
-    width: 400px;
+    width: 450px;
     height: 200px;
     object-fit: cover
 }

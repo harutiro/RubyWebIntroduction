@@ -17,7 +17,7 @@
 <body>
 
     <nav>
-        <a href="home-index.html" class="name">
+        <a href="/" class="name">
             S I W
         </a>
         
@@ -39,36 +39,50 @@
     <!--<header>-->
     <!--    <h1>SIW</h1>-->
     <!--</header>-->
+    <div class="backImage">
     <div class="container-fluid p-2 d-flex justify-content-center">
     <div class="card col-lg-6 p-5 border-3">
-    <form action="/create" method="post">
+    <form action="/create" method="post" enctype="multipart/form-data">
       
-        <div class="form-group">
+        <div class="form-group my-2">
             <label for="title">アプリ名</label>
             <input type="text" name="main_title" id="main_title" class="form-control">
         </div>
-        <div class="form-group">
-            <label for="price">サブタイトル</label>
+        <!--<div>-->
+        <!--    <label for="price">アプリアイコン</label>-->
+        <!--    <p><input type="file" name="app_icon" class="form-control-file" /></p>-->
+        <!--</div> -->
+        <div class="form-group my-2">
+            <label for="price">サイトの大雑把な説明を一行でどうぞ！！</label>
             <input type="text" name="sub_title" id="sub_title" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group my-2">
             <label for="price">メッセージ</label>
             <input type="text" name="message" id="message" class="form-control">
         </div>
-        <div class="form-group">
+        <!--<div>-->
+        <!--    <label for="price">紹介画像</label>-->
+        <!--    <p><input type="file" name="image" class="form-control-file" /></p>-->
+        <!--</div> -->
+        <div class="form-group my-2">
             <label for="price">公式ページURL</label>
             <input type="text" name="url" id="url" class="form-control">
-        </div>    
-        <div class="form-group">
+        </div>
+        <div class="form-group my-2">
             <label for="price">ユーザー名</label>
             <input type="text" name="user_name" id="user_name" class="form-control">
         </div>
-        <div class="form-group">
-            <label for="price">パスワード</label>
-            <input type="text" name="pass" id="pass" class="form-control">
-        </div>
+        <div>
+            <label for="price my-2">ユーザーアイコン</label>
+            <p><input type="file" name="user_icon" class="form-control-file" /></p>
+        </div>  
+        <!--<div class="form-group">-->
+        <!--    <label for="price">パスワード　※　編集するときに使用予定、現在パスワードを使用しなくても編集が</label>-->
+        <!--    <input type="text" name="pass" id="pass" class="form-control">-->
+        <!--</div>-->
         
         <div class="container my-3">
+            <label for="price">対応OS</label>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" name="windows" type="checkbox" id="windows" value=ture>
                 <label class="form-check-label" for="inlineCheckbox1">Windows</label>
@@ -83,8 +97,8 @@
             </div>
         </div>
           
-        <div class="like">  
-        <div class="form-group">
+        <div class="like my-2">  
+        <div class="form-group my-2">
             <label for="category">カテゴリー</label>
             <select name="category" class="form-control">
               <% @categories.each do |category|%>
@@ -98,6 +112,7 @@
     </form>
     </div>
     </div>
+    </div>
     
     <div class="btn-group col-lg-12">
         <%  @categories.each do |category| %> 
@@ -109,22 +124,23 @@
     <!--    =================================無料==========================================  -->
     
     <section class="free" id="free">
-        <h2 class="title">無料ソフト</h2>
+        <h2 class="title"><%= @category_name %></h2>
         
         <div class="boxes">
             <% @contributions.each do |item| %>
             
                 <div class="box">
                     <div class="box-first">
-                        <img src="/img/7zip/icon.png">
+                        <% uri = URI.parse(item.url) %>
+                        <img src="https://api.faviconkit.com/<%= uri.host %>/144">
                         <div>
                             <h3><%= item.main_title%></h3>
                             <p><%= item.sub_title%></p>
                         </div>
                     </div>
-                    <img src="/img/7zip/intr.PNG" class="box-second">
+                    <img src="https://lit-screenshot-api.herokuapp.com/?url=<%= item.url %>" class="box-second">
                     <div class="box-center">
-                        <img src="/img/user/harutiro-icon.jpg">
+                        <img src="<%= item.user_icon %>">
                         <div class="box-center-name">
                             <p>紹介者</p>
                             <h3><%= item.user_name %></h3>
@@ -150,10 +166,17 @@
                         <div class="container pull-left m-0">
                             <a class="box-button" href="<%= item.url%>" target="_blank">公式ウェブ＋ダウンロードサイト</a>
                         </div>
+                        
                         <span class="card-dooter-text"><%= item.like %></span>
                         <form action="/good/<%= item.id %>" method="post">
                             <input type="submit" value="LIKE" class="btn card-fotter-text">
                         </form>
+                        
+                        <form action="/delete/<%= item.id %>" method="post">
+                            <input type="submit" value="DELETE" class="btn card-fotter-text">
+                        </form>
+        
+                        <a href="/edit/<%= item.id %>" class="btn card-fotter-text">EDIT</a>
                     </div>    
                 </div>
             

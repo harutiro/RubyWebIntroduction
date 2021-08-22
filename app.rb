@@ -6,6 +6,12 @@ require './models/contribution.rb'
 
 before do
 
+    Dotenv.load
+    Cloudinary.config do |config|
+        config.cloud_name = ENV['CLOUD_NAME']
+        config.api_key = ENV['CLOUDINARY_API_KEY']
+        config.api_secret = ENV['CLOUDINARY_API_SECRET']
+    end
 
 end
 
@@ -16,9 +22,25 @@ get '/' do
 end
 
 post '/create' do
+    user_icon_url = ''
+    if params[:user_icon]
+        img = params[:user_icon]
+        tempfile = img[:tempfile]
+        upload = Cloudinary::Uploader.upload(tempfile.path)
+        user_icon_url = upload['url']
+    end
+    
+    # app_icon_url = ''
+    # if params[:app_icon]
+    #     img = params[:app_icon]
+    #     tempfile = img[:tempfile]
+    #     upload = Cloudinary::Uploader.upload(tempfile.path)
+    #     app_icon_url = upload['url']
+    # end
+    
     # img_url = ''
-    # if params[:file]
-    #     img = params[:file]
+    # if params[:image]
+    #     img = params[:image]
     #     tempfile = img[:tempfile]
     #     upload = Cloudinary::Uploader.upload(tempfile.path)
     #     img_url = upload['url']
@@ -34,7 +56,11 @@ post '/create' do
         message: params[:message],
         url: params[:url],
         like: 0,
-        category_id: params[:category]
+        pass: params[:pass],
+        category_id: params[:category],
+        user_icon: user_icon_url,
+        # app_icon: app_icon_url,
+        # img: img_url
     })
     
     redirect '/'
@@ -58,5 +84,33 @@ post '/good/:id' do
     
     redirect '/'
 
+end
+
+post '/delete/:id' do
+    Contribution.find(params[:id]).destroy
+    redirect '/'
+end
+
+get '/edit/:id' do
+    @content = Contribution.find (params[:id])
+    @categories = Category.all
+    erb :edit
+end
+
+post '/renew/:id' do
+
+    content = Contribution.find(params[:id])
+    content.update({
+        main_title: params[:main_title],
+        sub_title: params[:sub_title],
+        user_name: params[:user_name],
+        message: params[:message],
+        url: params[:url],
+        like: 0,
+        category_id: params[:category],
+        pass: params[:pass]
+    })
+    
+    redirect '/'
 end
 
