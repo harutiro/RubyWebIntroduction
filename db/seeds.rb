@@ -530,6 +530,25 @@ if Contribution.count == 0
                         
                         },
                         
+                        {app_icon: "/img/coretemp/icon.jfif",
+                        main_title: "OBS",
+                        sub_title:  "録画、生放送ができるソフト",
+                        img:        "/img/coretemp/intr.jpg",
+                        user_icon:  "",
+                        user_name:  "フナちゃん",
+                        winos:      true,
+                        macos:      true,
+                        linuxos:    true,
+                        pass:       "testInput",
+                        message:    "ビデオ録画と生放送用の無料でオープンソースのソフトウェア。 
+                                    Windows、Mac、Linuxですばやく簡単にダウンロードして配信を開始できます。高性能のリアルタイムでの映像/音声のキャプチャとミキシングを行い、
+                                    カスタムトランジションによって無制限のシーン間をシームレスに切り替えることができます。",
+                        url:        "https://obsproject.com/ja",
+                        like:       1,
+                        category_id: 2
+                        
+                        },
+                        
                         #　有料＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
                         
                         {app_icon: "/img/ofice/icon.jpg",

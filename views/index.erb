@@ -73,7 +73,7 @@
             <input type="text" name="user_name" id="user_name" class="form-control">
         </div>
         <div>
-            <label for="price my-2">ユーザーアイコン</label>
+            <label for="price my-2">ユーザーアイコン ※ファイルを選択しない場合、ノーマルのアイコンになります</label>
             <p><input type="file" name="user_icon" class="form-control-file" /></p>
         </div>  
         <!--<div class="form-group">-->
@@ -82,7 +82,8 @@
         <!--</div>-->
         
         <div class="container my-3">
-            <label for="price">対応OS</label>
+            <label for="price">対応OS ※OSの再編集は現在不可能ですご注意くださいm(_ _)m</label>
+            <p></p>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" name="windows" type="checkbox" id="windows" value=ture>
                 <label class="form-check-label" for="inlineCheckbox1">Windows</label>
@@ -121,7 +122,7 @@
     </div>
 
 
-    <!--    =================================無料==========================================  -->
+    <!--    Item  -->
     
     <section class="free" id="free">
         <h2 class="title"><%= @category_name %></h2>
@@ -140,7 +141,11 @@
                     </div>
                     <img src="https://lit-screenshot-api.herokuapp.com/?url=<%= item.url %>" class="box-second">
                     <div class="box-center">
-                        <img src="<%= item.user_icon %>">
+                        <% unless item.user_icon.empty? %>
+                            <img src="<%= item.user_icon %>">
+                        <% else %>
+                            <img src="/img/user/public.png">
+                        <% end %>    
                         <div class="box-center-name">
                             <p>紹介者</p>
                             <h3><%= item.user_name %></h3>
@@ -169,14 +174,14 @@
                         
                         <span class="card-dooter-text"><%= item.like %></span>
                         <form action="/good/<%= item.id %>" method="post">
-                            <input type="submit" value="LIKE" class="btn card-fotter-text">
+                            <input src="/img/icons/fav.png" width="50" type="image" value="いいね" class="btn card-fotter-text">
                         </form>
                         
                         <form action="/delete/<%= item.id %>" method="post">
-                            <input type="submit" value="DELETE" class="btn card-fotter-text">
+                            <input src="/img/icons/delete.png" width="50" type="image" value="消去" class="btn card-fotter-text">
                         </form>
         
-                        <a href="/edit/<%= item.id %>" class="btn card-fotter-text">EDIT</a>
+                        <a href="/edit/<%= item.id %>" class="btn card-fotter-text"><img src="/img/icons/edit.png" width="30" alt="サンプル"></a>
                     </div>    
                 </div>
             

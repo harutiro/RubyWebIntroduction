@@ -98,6 +98,14 @@ get '/edit/:id' do
 end
 
 post '/renew/:id' do
+    
+    user_icon_url = ''
+    if params[:user_icon]
+        img = params[:user_icon]
+        tempfile = img[:tempfile]
+        upload = Cloudinary::Uploader.upload(tempfile.path)
+        user_icon_url = upload['url']
+    end
 
     content = Contribution.find(params[:id])
     content.update({
@@ -108,7 +116,8 @@ post '/renew/:id' do
         url: params[:url],
         like: 0,
         category_id: params[:category],
-        pass: params[:pass]
+        pass: params[:pass],
+        user_icon: user_icon_url,
     })
     
     redirect '/'

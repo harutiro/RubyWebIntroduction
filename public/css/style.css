@@ -20,6 +20,11 @@ body {
     background-image: url("/img/formImage.jpg");
 }
 
+.editBackImage{
+    background-image: url("/img/formImage.jpg");
+    height:100vh;
+}
+
 h1 {
     color: #000044;
     font-size: 90px;
