@@ -1,3 +1,8 @@
-require 'sinatra/activerecord'
+require 'sinatra/activerecord' 
 require 'sinatra/activerecord/rake'
-require './models/contribution.rb'
+
+namespace :db do
+    task :load_config do
+      require "./app"
+    end
+  end

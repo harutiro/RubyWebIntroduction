@@ -1,7 +1,6 @@
 default_env: &default
-  adapter: postgresql
-  encoding: unicode
-  database: c_bbs
+  adapter: sqlite3
+  database: db/development.sqlite3
 
 development:
   <<: *default

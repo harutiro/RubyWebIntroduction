@@ -1,6 +1,7 @@
-ruby '3.0.0'
+ruby '2.7.3'
 source 'https://rubygems.org'
 
+gem 'sqlite3'
 gem 'activerecord', '~> 6.1'
 gem 'bcrypt', '~> 3.1'
 gem 'cloudinary', '~> 1.18'
